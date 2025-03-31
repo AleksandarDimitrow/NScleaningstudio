@@ -20,9 +20,13 @@
                 <ul class="nav-links">
                  <li><a href="#home">Начало</a></li>
                  <li><a href="#about">За нас</a></li>
-                 <li><a href="#services">Услуги</a></li>
-                 <li><a href="gallery.html">Галерия</a></li>
-                 <li><a href="booking.php">Запази час</a></li>
+                 <li><a href="booking.php">Услуги</a></li>
+                 <li><a href="gallery.php">Галерия</a></li>
+                 <?php if (isset($_SESSION['user_id'])): ?>
+                     <li><a href="profile.php">Профил</a></li>
+                 <?php else: ?>
+                     <li><a href="login.php?redirect=profile.php">Влез в профил</a></li>
+                 <?php endif; ?>
                  <li><a href="#contact">Контакти</a></li>
                 </ul>
             </nav>
@@ -41,47 +45,6 @@
         <section id="about" class="section about-section">
             <h2>За нас</h2>
             <p>Ние сме професионален екип, посветен на детайлното почистване и поддръжка на вашия автомобил. Използваме висококачествени продукти и модерни техники, за да осигурим максимален блясък и защита на вашето превозно средство.</p>
-
-        <!-- Услуги -->
-        <section id="services" class="section">
-            <h2>Нашите услуги</h2>
-            <div class="services-container">
-                <!-- Вътрешно почистване -->
-                <div class="service-card">
-                    <img src="assets/img/interioruslg.webp" alt="Interior">
-                    <div class="service-card-content">
-                        <h3 class="service-card-title">Детайлно вътрешно почистване</h3>
-                        <p class="service-card-description">
-                            - Почистване седалки и мокети<br>
-                            - Почистване на педали и стелки<br>
-                            - Табло, волан, прагове, багажник
-                        </p>
-                    </div>
-                </div>
-                <!-- Външно почистване -->
-                <div class="service-card">
-                    <img src="assets/img/exterioruslg.webp" alt="Exterior">
-                    <div class="service-card-content">
-                        <h3 class="service-card-title">Детайлно външно почистване</h3>
-                        <p class="service-card-description">
-                            - Измиване + джанти + подсушаване<br>
-                            - Предварително обезмасляване
-                        </p>
-                    </div>
-                </div>
-                <!-- Полиране -->
-                <div class="service-card">
-                    <img src="assets/img/poliraneuslg.jpg" alt="Polish">
-                    <div class="service-card-content">
-                        <h3 class="service-card-title">Полиране и защита</h3>
-                        <p class="service-card-description">
-                            - Полиране на детайли или цял автомобил<br>
-                            - Керамична защита на фарове и стъкла
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Контакти -->
         <section id="contact" class="section contact-section">
