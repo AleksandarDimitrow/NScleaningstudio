@@ -35,17 +35,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body>
-    <h2>Регистрация</h2>
-    <?php if ($msg) echo "<p>$msg</p>"; ?>
-    <form method="POST" action="">
-        <input type="text" name="name" placeholder="Име" required><br><br>
-        <input type="email" name="email" placeholder="Имейл" required><br><br>
-        <input type="text" name="phone" placeholder="Телефон"><br><br>
-        <input type="password" name="password" placeholder="Парола" required><br><br>
-        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
-        <button type="submit">Регистрирай се</button>
-    </form>
+    <div class="auth-container">
+        <h2>Регистрация</h2>
+
+        <?php if ($msg): ?>
+            <div class="auth-message"><?= htmlspecialchars($msg) ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <input type="text" name="name" placeholder="Име" required>
+            <input type="email" name="email" placeholder="Имейл" required>
+            <input type="text" name="phone" placeholder="Телефон">
+            <input type="password" name="password" placeholder="Парола" required>
+            <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+            <button type="submit">Регистрирай се</button>
+        </form>
+
+        <div class="auth-link">
+            Вече имаш акаунт? <a href="login.php?redirect=<?= urlencode($redirect) ?>">Влез тук</a>
+        </div>
+    </div>
 </body>
 </html>

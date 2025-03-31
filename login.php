@@ -34,16 +34,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
+    <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 <body>
-    <h2>Вход</h2>
-    <?php if ($msg) echo "<p>$msg</p>"; ?>
-    <form method="POST" action="">
-        <input type="email" name="email" placeholder="Имейл" required><br><br>
-        <input type="password" name="password" placeholder="Парола" required><br><br>
-        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
-        <button type="submit">Влез</button>
-    </form>
-    <p>Нямаш акаунт? <a href="register.php?redirect=<?= urlencode($redirect) ?>">Регистрирай се</a></p>
+    <div class="auth-container">
+        <h2>Вход</h2>
+
+        <?php if ($msg): ?>
+            <div class="auth-message"><?= htmlspecialchars($msg) ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <input type="email" name="email" placeholder="Имейл" required>
+            <input type="password" name="password" placeholder="Парола" required>
+            <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+            <button type="submit">Влез</button>
+        </form>
+
+        <div class="auth-link">
+            Нямаш акаунт? <a href="register.php?redirect=<?= urlencode($redirect) ?>">Регистрирай се</a>
+        </div>
+    </div>
 </body>
 </html>

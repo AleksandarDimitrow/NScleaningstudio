@@ -1,0 +1,91 @@
+/* Обща фонова и централна подредба */
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Контейнер за login и register */
+.auth-container {
+    background: #111;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Заглавие */
+.auth-container h2 {
+    margin-bottom: 20px;
+    color: #f39c12;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Съобщение за грешка */
+.auth-message {
+    background: #d35400;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Формата вътре */
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Полетата за вход */
+.auth-container input {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    background: #fff;
+    color: #000;
+}
+
+/* Бутон */
+.auth-container button {
+    padding: 12px;
+    background-color: #f39c12;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
+    background-color: #d35400;
+    color: #fff;
+}
+
+/* Линкове под формата */
+.auth-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.auth-link a {
+    color: #f39c12;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}

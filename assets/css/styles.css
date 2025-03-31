@@ -146,14 +146,13 @@ main {
 .about-section {
     text-align: center;
     padding: 50px 20px;
-    background: #111; /* Същият тъмен фон като сайта */
+    background: #111;
     color: white;
     border-radius: 10px;
     margin: 40px auto;
     max-width: 1200px;
 }
 
-/* Заглавие на секцията */
 .about-section h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -171,7 +170,6 @@ main {
     margin: 10px auto 0;
 }
 
-/* Подравняване на текста */
 .about-section p {
     font-size: 1.1rem;
     max-width: 900px;
@@ -179,7 +177,6 @@ main {
     line-height: 1.6;
 }
 
-/* Грид за снимките */
 .about-images {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -192,19 +189,17 @@ main {
     margin-right: auto;
 }
 
-/* Картичка с картинка + текст */
 .about-item {
     position: relative;
     text-align: center;
     max-width: 320px;
     overflow: hidden;
     border-radius: 10px;
-    background: #222; /* По-добро сливане с дизайна */
+    background: #222;
     padding: 10px;
     transition: transform 0.3s ease;
 }
 
-/* Снимки */
 .about-item img {
     width: 100%;
     height: 220px;
@@ -213,14 +208,13 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Описание върху снимките */
 .about-item .hover-text {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Полупрозрачен фон за по-добър контраст */
+    background: rgba(0, 0, 0, 0.85);
     color: white;
     font-size: 14px;
     display: flex;
@@ -233,17 +227,14 @@ main {
     border-radius: 10px;
 }
 
-/* Показване на текста при hover */
 .about-item:hover .hover-text {
     opacity: 1;
 }
 
-/* Hover ефект */
 .about-item:hover {
     transform: scale(1.05);
 }
 
-/* Оптимизация за по-големи екрани */
 @media (max-width: 1024px) {
     .about-images {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -251,6 +242,25 @@ main {
     .about-item {
         max-width: 270px;
     }
+}
+
+/* Списък с предимства в секция "За нас" */
+.about-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 700px;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-benefits li {
+    padding-left: 0.5em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Секция "Услуги" */
@@ -292,7 +302,6 @@ main {
     line-height: 1.8;
 }
 
-/* Ефект при hover */
 .service-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
