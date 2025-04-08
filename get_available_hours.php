@@ -16,8 +16,9 @@ foreach ($slots as $slot) {
     $result = mysqli_query($conn, $check);
 
     if (mysqli_num_rows($result) === 0) {
-        $available[] = $slot;
+        $available[] = substr($slot, 0, 5);
     }
 }
 
 echo json_encode($available);
+

@@ -38,12 +38,25 @@ if (!$result) {
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php#home">Начало</a></li>
-                <li><a href="index.php#about">За нас</a></li>
-                <li><a href="booking.php">Услуги</a></li>
-                <li><a href="gallery.php">Галерия</a></li>
-                <li><a href="profile.php">Профил</a></li>
-                <li><a href="index.php#contact">Контакти</a></li>
+            <li><a href="index.php#home">Начало</a></li>
+<li><a href="index.php#about">За нас</a></li>
+<li><a href="booking.php">Услуги</a></li>
+<li><a href="gallery.php">Галерия</a></li>
+
+<?php
+if (isset($_SESSION['user_id'])) {
+    $uid = $_SESSION['user_id'];
+    $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$uid' LIMIT 1");
+    $admin_data = mysqli_fetch_assoc($check_admin);
+    if ($admin_data && $admin_data['is_admin'] == 1) {
+        echo '<li><a href="admin.php">Админ панел</a></li>';
+    }
+    echo '<li><a href="profile.php">Профил</a></li>';
+} else {
+    echo '<li><a href="login.php?redirect=profile.php">Влез в профил</a></li>';
+}
+?>
+<li><a href="index.php#contact">Контакти</a></li>
             </ul>
         </nav>
     </div>

@@ -20,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conflict_query = "SELECT * FROM bookings WHERE date = '$date' AND time = '$time'";
     $conflict_result = mysqli_query($conn, $conflict_query);
 
-    // Не позволявай минал час за днешна дата
     if ($date === $current_date && $time <= $current_time) {
         $msg = "❌ Не можеш да запазиш за изминал час.";
     }
@@ -46,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Запази час</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/booking.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -59,12 +59,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.php#home">Начало</a></li>
-                <li><a href="index.php#about">За нас</a></li>
-                <li><a href="booking.php">Услуги</a></li>
-                <li><a href="gallery.php">Галерия</a></li>
-                <li><a href="profile.php">Профил</a></li>
-                <li><a href="index.php#contact">Контакти</a></li>
+            <li><a href="index.php#home">Начало</a></li>
+<li><a href="index.php#about">За нас</a></li>
+<li><a href="booking.php">Услуги</a></li>
+<li><a href="gallery.php">Галерия</a></li>
+
+<?php
+if (isset($_SESSION['user_id'])) {
+    $uid = $_SESSION['user_id'];
+    include_once 'db.php'; // Добави само ако още не е включен
+    $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$uid' LIMIT 1");
+    $admin_data = mysqli_fetch_assoc($check_admin);
+    if ($admin_data && $admin_data['is_admin'] == 1) {
+        echo '<li><a href="admin.php">Админ панел</a></li>';
+    }
+    echo '<li><a href="profile.php">Профил</a></li>';
+} else {
+    echo '<li><a href="login.php?redirect=profile.php">Влез в профил</a></li>';
+}
+?>
+<li><a href="index.php#contact">Контакти</a></li>
             </ul>
         </nav>
     </div>
@@ -104,35 +118,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </section>
 
-    <h3>Запиши си час</h3>
-
     <?php if ($msg): ?>
-        <p style="text-align:center; font-weight:bold;"><?= $msg ?></p>
+        <p><?= $msg ?></p>
     <?php endif; ?>
 
     <form method="POST" action="">
-        <label for="service">Услуга:</label><br>
+        <label for="service">Запиши си час</label>
+        <label for="service">Услуга:</label>
         <select name="service" id="service" required>
             <option value="">-- Избери услуга --</option>
             <option value="Вътрешно детайлно почистване">Вътрешно детайлно почистване</option>
-            <option value="Външно детайлно почистване">Външно детайлноп почистване</option>
+            <option value="Външно детайлно почистване">Външно детайлно почистване</option>
             <option value="Полиране на детайл">Полиране на детайл</option>
             <option value="Полиране на фарове и стопове">Полиране фарове и стопове</option>
             <option value="Керамично покритие на детайл">Керамична защита на детайл</option>
-        </select><br><br>
+        </select>
 
-        <label for="date">Дата:</label><br>
-        <input type="date" name="date" id="date" required min="<?= date('Y-m-d'); ?>"><br><br>
+        <label for="date">Дата:</label>
+        <input type="text" name="date" id="date" required>
 
-        <label for="time">Свободни слотове:</label><br>
+        <label for="time">Свободни слотове:</label>
         <select name="time" id="time" required>
             <option value="">-- Избери дата първо --</option>
-        </select><br><br>
+        </select>
 
         <button type="submit">Запази</button>
     </form>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 document.getElementById('date').addEventListener('change', function () {
     const date = this.value;
@@ -157,20 +171,25 @@ document.getElementById('date').addEventListener('change', function () {
                 data.forEach(slot => {
                     const opt = document.createElement('option');
                     opt.value = slot;
-                    opt.textContent = slot + ' – ' + formatEnd(slot);
+                    opt.textContent = slot.slice(0,5) + ' – ' + formatEnd(slot);
                     timeSelect.appendChild(opt);
                 });
             }
         });
 
     function formatEnd(start) {
-        const [h, m, s] = start.split(':').map(Number);
+        const [h] = start.split(':').map(Number);
         let endHour = h + 3;
         if (endHour < 10) endHour = '0' + endHour;
         return endHour + ':00';
     }
 });
-</script>
 
+flatpickr("#date", {
+    minDate: "today",
+    dateFormat: "Y-m-d",
+    disableMobile: true
+});
+</script>
 </body>
 </html>

@@ -5,37 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Галерия - NS Cleaning Studio</title>
+    <link rel="stylesheet" href="assets/css/styles.css"> 
     <link rel="stylesheet" href="assets/css/gallery.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- Навигация -->
 <header class="header">
-    <div class="top-bar">
-        <span>📞 NS Cleaning Studio: 0885880558 | ✉ nscleaning@varna.bg</span>
-    </div>
-    <div class="nav-bar">
-        <div class="logo">
-            <a href="index.php"><img src="assets/img/logo.jpg" alt="NS Cleaning Studio Logo"></a>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.php#home">Начало</a></li>
-                <li><a href="index.php#about">За нас</a></li>
-                <li><a href="booking.php">Услуги</a></li>
-                <li><a href="gallery.php">Галерия</a></li>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li><a href="profile.php">Профил</a></li>
-                <?php else: ?>
-                    <li><a href="login.php?redirect=profile.php">Влез в профил</a></li>
-                <?php endif; ?>
-                <li><a href="index.php#contact">Контакти</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+  <div class="top-bar">
+      <span>📞 NS Cleaning Studio: 0885880558 | ✉ nscleaning@varna.bg</span>
+  </div>
+  <div class="nav-bar">
+      <div class="logo">
+          <a href="index.php"><img src="assets/img/logo.jpg" alt="NS Cleaning Studio Logo"></a>
+      </div>
+      <nav>
+          <ul class="nav-links">
+          <li><a href="index.php#home">Начало</a></li>
+<li><a href="index.php#about">За нас</a></li>
+<li><a href="booking.php">Услуги</a></li>
+<li><a href="gallery.php">Галерия</a></li>
 
+<?php
+if (isset($_SESSION['user_id'])) {
+    $uid = $_SESSION['user_id'];
+    include_once 'db.php'; // Добави само ако още не е включен
+    $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$uid' LIMIT 1");
+    $admin_data = mysqli_fetch_assoc($check_admin);
+    if ($admin_data && $admin_data['is_admin'] == 1) {
+        echo '<li><a href="admin.php">Админ панел</a></li>';
+    }
+    echo '<li><a href="profile.php">Профил</a></li>';
+} else {
+    echo '<li><a href="login.php?redirect=profile.php">Влез в профил</a></li>';
+}
+?>
+<li><a href="index.php#contact">Контакти</a></li>
+          </ul>
+      </nav>
+  </div>
+</header>
 <main>
     <section class="gallery-container">
         <h1>Нашата Галерия</h1>
