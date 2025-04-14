@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 10:54 AM
+-- Generation Time: Apr 14, 2025 at 10:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,9 +41,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `service`, `date`, `time`, `created_at`) VALUES
-(2, 3, 'Полиране и защита', '2025-04-01', '12:18:00', '2025-03-31 08:17:49'),
-(3, 3, 'Външно почистване', '2025-04-03', '12:45:00', '2025-03-31 08:40:31'),
-(5, 2, 'Вътрешно почистване', '2025-04-04', '01:30:00', '2025-03-31 08:51:42');
+(16, 1, 'Външно детайлно почистване', '2025-04-16', '11:00:00', '2025-04-14 20:18:31');
 
 -- --------------------------------------------------------
 
@@ -57,17 +55,19 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_admin` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `created_at`) VALUES
-(1, 'test', 'test@gmail.com', '$2y$10$G6Uk6BspijGf.QP83B7k7OGqeZVXTmspPAx0ffQXjjsKTwA25B8Zq', '0888888888', '2025-03-30 14:10:46'),
-(2, 'test1', 'test1@gmail.com', '$2y$10$K.yzOdwNss6vmQ3zDPVUlOCv/TeBPzSAblMj8aMmcw31fVStxzrH2', '0898888888', '2025-03-30 15:04:50'),
-(3, 'test2', 'test2@abv.bg', '$2y$10$wKuMC3sO8gOdlVke0eI4neidnSmuDCdV5hgK4ikMPhR/h3/u4DAmC', '0891234567', '2025-03-31 08:15:48');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `created_at`, `is_admin`) VALUES
+(1, 'test', 'test@gmail.com', '$2y$10$f1rCFLOh/K9EpOL.vY19Me.KYJbw/2f90NUMKvn6asLQZftxlKIZy', '0888888888', '2025-03-30 14:10:46', 0),
+(2, 'test1', 'test1@gmail.com', '$2y$10$K.yzOdwNss6vmQ3zDPVUlOCv/TeBPzSAblMj8aMmcw31fVStxzrH2', '0898888888', '2025-03-30 15:04:50', 0),
+(3, 'test2', 'test2@abv.bg', '$2y$10$wKuMC3sO8gOdlVke0eI4neidnSmuDCdV5hgK4ikMPhR/h3/u4DAmC', '0891234567', '2025-03-31 08:15:48', 0),
+(4, 'admin', 'admin@gmail.com', '$2y$10$nw2uYMGqJh/ZFXVIfAX8TuOUanyg.nRbQtH9hC6iSqv1LhVxbCF52', '0812345672', '2025-04-05 13:43:38', 1);
 
 --
 -- Indexes for dumped tables
@@ -94,13 +94,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

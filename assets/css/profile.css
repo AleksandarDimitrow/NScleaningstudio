@@ -22,10 +22,57 @@ h3 {
     color: #f39c12;
 }
 
-/* Таблица със часове */
+/* Центриране на формата */
+.edit-form {
+    max-width: 500px;
+    margin: 30px auto;
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-form label {
+    font-weight: bold;
+    color: #f39c12;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.edit-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #000;
+}
+
+.edit-form button {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background-color: #f39c12;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.edit-form button:hover {
+    background-color: #d35400;
+    color: #fff;
+}
+
+/* Таблица със запазени часове */
 table {
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto 60px auto;
     border-collapse: collapse;
     background: #111;

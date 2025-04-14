@@ -68,6 +68,8 @@ main {
 .service-card-description {
     font-size: 1rem;
     line-height: 1.5;
+    color: #000;
+    margin-bottom: 5px;
 }
 
 /* Форма за запазване */
@@ -126,7 +128,7 @@ form button:hover {
 p {
     text-align: center;
     font-weight: bold;
-    color: orange;
+    color: #f39c12;
     margin-top: 20px;
 }
 

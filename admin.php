@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Проверка дали е админ
 $user_id = $_SESSION['user_id'];
 $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$user_id' LIMIT 1");
 $admin_data = mysqli_fetch_assoc($check_admin);
@@ -18,12 +17,11 @@ if (!$admin_data || $admin_data['is_admin'] != 1) {
     exit();
 }
 
-// Извличаме всички резервации с данни за потребителите
+// Извличане на всички резервации
 $query = "SELECT b.*, u.name, u.email, u.phone 
           FROM bookings b
           JOIN users u ON b.user_id = u.id
           ORDER BY b.date DESC, b.time DESC";
-
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -46,25 +44,13 @@ $result = mysqli_query($conn, $query);
             </div>
             <nav>
                 <ul class="nav-links">
-                <li><a href="index.php#home">Начало</a></li>
-<li><a href="index.php#about">За нас</a></li>
-<li><a href="booking.php">Услуги</a></li>
-<li><a href="gallery.php">Галерия</a></li>
-
-<?php
-if (isset($_SESSION['user_id'])) {
-    $uid = $_SESSION['user_id'];
-    $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$uid' LIMIT 1");
-    $admin_data = mysqli_fetch_assoc($check_admin);
-    if ($admin_data && $admin_data['is_admin'] == 1) {
-        echo '<li><a href="admin.php">Админ панел</a></li>';
-    }
-    echo '<li><a href="profile.php">Профил</a></li>';
-} else {
-    echo '<li><a href="login.php?redirect=profile.php">Влез в профил</a></li>';
-}
-?>
-<li><a href="index.php#contact">Контакти</a></li>
+                    <li><a href="index.php#home">Начало</a></li>
+                    <li><a href="index.php#about">За нас</a></li>
+                    <li><a href="booking.php">Услуги</a></li>
+                    <li><a href="gallery.php">Галерия</a></li>
+                    <li><a href="admin.php">Админ панел</a></li>
+                    <li><a href="profile.php">Профил</a></li>
+                    <li><a href="index.php#contact">Контакти</a></li>
                 </ul>
             </nav>
         </div>
@@ -82,6 +68,7 @@ if (isset($_SESSION['user_id'])) {
                     <th>Дата</th>
                     <th>Час</th>
                     <th>Създадена на</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,6 +81,10 @@ if (isset($_SESSION['user_id'])) {
                     <td><?= $row['date'] ?></td>
                     <td><?= $row['time'] ?></td>
                     <td><?= $row['created_at'] ?? '---' ?></td>
+                    <td>
+                        <a href="edit_booking.php?id=<?= $row['id'] ?>" class="btn-small">Редактирай</a>
+                        <a href="delete_booking.php?id=<?= $row['id'] ?>" class="btn-small danger" onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази резервация?')">Изтрий</a>
+                    </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>

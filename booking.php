@@ -67,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 if (isset($_SESSION['user_id'])) {
     $uid = $_SESSION['user_id'];
-    include_once 'db.php'; // Добави само ако още не е включен
     $check_admin = mysqli_query($conn, "SELECT is_admin FROM users WHERE id = '$uid' LIMIT 1");
     $admin_data = mysqli_fetch_assoc($check_admin);
     if ($admin_data && $admin_data['is_admin'] == 1) {

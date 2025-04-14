@@ -55,7 +55,6 @@ if (isset($_SESSION['user_id'])) {
         <!-- За нас -->
         <section id="about" class="section about-section reveal">
             <h2>За нас</h2>
-            <h2>За NS Cleaning Studio</h2>
 <p>
     Добре дошли в <strong>NS Cleaning Studio</strong> – вашият доверен партньор за професионално <strong>детайлно почистване на автомобили</strong> във Варна!
 </p>

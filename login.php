@@ -46,7 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="POST" action="">
             <input type="email" name="email" placeholder="Имейл" required>
-            <input type="password" name="password" placeholder="Парола" required>
+            <input type="password" name="password" id="password" placeholder="Парола" required>
+
+            <label style="font-size: 0.9rem; text-align: left;">
+                <input type="checkbox" onclick="togglePassword()"> Покажи паролата
+            </label>
+
             <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
             <button type="submit">Влез</button>
         </form>
@@ -55,5 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Нямаш акаунт? <a href="register.php?redirect=<?= urlencode($redirect) ?>">Регистрирай се</a>
         </div>
     </div>
+
+    <script>
+    function togglePassword() {
+        const input = document.getElementById("password");
+        input.type = input.type === "password" ? "text" : "password";
+    }
+    </script>
 </body>
 </html>
