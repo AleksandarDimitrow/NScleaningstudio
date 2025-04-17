@@ -49,16 +49,16 @@ if (isset($_SESSION['user_id'])) {
     <section class="gallery-container">
         <h1>Нашата Галерия</h1>
         <div class="gallery">
-            <img src="assets/img/photo1.jpg" alt="Снимка 1" class="gallery-item">
-            <img src="assets/img/photo2.jpg" alt="Снимка 2" class="gallery-item">
-            <img src="assets/img/photo3.jpg" alt="Снимка 3" class="gallery-item">
-            <img src="assets/img/photo4.jpg" alt="Снимка 4" class="gallery-item">
-            <img src="assets/img/photo5.jpg" alt="Снимка 5" class="gallery-item">
-            <img src="assets/img/photo6.jpg" alt="Снимка 6" class="gallery-item">
-            <img src="assets/img/photo7.jpg" alt="Снимка 7" class="gallery-item">
-            <img src="assets/img/photo8.jpg" alt="Снимка 8" class="gallery-item">
-            <img src="assets/img/photo9.jpg" alt="Снимка 9" class="gallery-item">
-            <img src="assets/img/photo10.jpg" alt="Снимка 10" class="gallery-item">
+            <img src="assets/img/i1.jpg" alt="Снимка 1" class="gallery-item">
+            <img src="assets/img/i2.jpg" alt="Снимка 2" class="gallery-item">
+            <img src="assets/img/s1.jpg" alt="Снимка 3" class="gallery-item">
+            <img src="assets/img/s2.jpg" alt="Снимка 4" class="gallery-item">
+            <img src="assets/img/s3.jpg" alt="Снимка 5" class="gallery-item">
+            <img src="assets/img/t1.jpg" alt="Снимка 6" class="gallery-item">
+            <img src="assets/img/t2.jpg" alt="Снимка 7" class="gallery-item">
+            <img src="assets/img/to1.jpg" alt="Снимка 8" class="gallery-item">
+            <img src="assets/img/j1.jpg" alt="Снимка 9" class="gallery-item">
+            <img src="assets/img/p1.jpg" alt="Снимка 10" class="gallery-item">
         </div>
     </section>
 </main>
